@@ -14,7 +14,6 @@ jobs:
           command: |
             npm i
             npm run build
-            pwd && ls -al
             exit 1
       - save_cache:
           paths: [frontend/node_modules]
@@ -33,8 +32,6 @@ jobs:
           command: |
             npm i
             npm run build
-            cp .env dist/.env
-            pwd && ls -al
             exit 1
       - persist_to_workspace:
           root: ~/
