@@ -187,7 +187,35 @@ jobs:
       # Here's where you will add some code to rollback on failure
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
-    
+  run-migrations:
+    docker:
+      - image: sleavely/node-awscli:14.x
+    steps:
+      - checkout
+      - run:
+          name: Run migrations
+          command: |
+            cd backend
+            cat .env
+            npm i
+            npm run build
+            npm run migrations
+      - run:
+          name: Send migration results to memstash
+          command: |
+            echo "has been executed successfully" > ./migration_status.txt
+            pwd && ls -al
+            if grep -q "has been executed successfully" ./migration_status.txt 
+            then 
+              echo "has been executed successfully"
+              curl -H "Content-Type: text/plain" -H "token: PGKNfN5JZQcZbajTazsxYg" --request PUT --data "1" https://api.memstash.io/values/migrations-${CIRCLE_WORKFLOW_ID:0:7}
+            else
+              echo "has failed"
+              curl -H "Content-Type: text/plain" -H "token: PGKNfN5JZQcZbajTazsxYg" --request PUT --data "0" https://api.memstash.io/values/migrations-${CIRCLE_WORKFLOW_ID:0:7}
+            fi
+      # Here's where you will add some code to rollback on failure
+      - destroy-environment:
+          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
 workflows:
   default:
     jobs:
@@ -205,4 +233,5 @@ workflows:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
       - configure-infrastructure:
           requires: [deploy-infrastructure]
-         
+      - run-migrations:
+          requires: [configure-infrastructure]
