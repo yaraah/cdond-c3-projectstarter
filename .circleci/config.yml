@@ -14,13 +14,14 @@ jobs:
           keys: [frontend-build]
       - run:
           name: Build front-end
+          working_directory: ./frontend
           command: |
             npm i
             npm run build
-            exit 1
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
+
   build-backend:
     docker:
       - image: circleci/node:13.8.0
@@ -34,6 +35,11 @@ jobs:
           command: |
             npm i
             npm run build
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/backend/dist
+            - project/backend/node_modules
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
