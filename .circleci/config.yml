@@ -334,7 +334,7 @@ jobs:
             echo "${API_URL}"
             if curl -s ${URL} | grep "Welcome"
             then
-              return 1
+              return 0
             else
               return 1
             fi
