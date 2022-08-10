@@ -41,4 +41,4 @@
     TYPEORM_ENTITIES: "{{ lookup('env','TYPEORM_ENTITIES') }}"
 
   roles:
-    # Your code here
+    - configure-server
