@@ -332,7 +332,7 @@ jobs:
             URL="http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website-us-east-1.amazonaws.com"
             export API_URL="http://${BACKEND_IP}:3030"
             echo "${API_URL}"
-            if curl -s ${URL} | grep "welcome"
+            if curl -s ${URL} | grep "Welcome"
             then
               return 0
             else
