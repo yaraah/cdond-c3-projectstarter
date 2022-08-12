@@ -165,7 +165,18 @@ jobs:
             --output text)
             echo "[all]" >> .circleci/ansible/inventory.txt
             echo "$BACKEND_AWS_PUBLIC_IP" >> .circleci/ansible/inventory.txt
-      - run: yum -y install tar gzip
+      - run:
+          name: save the new back-end url to memory using memstach
+          command: |
+            backend_url=$(aws ec2 describe-instances \
+            --query 'Reservations[*].Instances[*].PublicIpAddress' \
+            --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
+            --output text)
+            curl -H "Content-Type: text/plain" \
+            -H "token: PGKNfN5JZQcZbajTazsxYg" \
+            --request PUT \
+            --data "http://${backend_url}:3030" \
+            https://kvdb.io/PGKNfN5JZQcZbajTazsxYg/backend_url
       - persist_to_workspace:
           root: ~/
           paths:
