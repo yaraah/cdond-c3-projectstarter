@@ -165,7 +165,7 @@ jobs:
             --output text >> ~/project/.circleci/ansible/inventory.txt
             cat ~/project/.circleci/ansible/inventory.txt
       - run:
-          name: save the new back-end url to memory using memstach
+          name: save the new back-end url to memory using kvdb
           command: |
             backend_url=$(aws ec2 describe-instances \
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
