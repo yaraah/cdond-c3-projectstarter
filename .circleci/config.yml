@@ -244,10 +244,10 @@ jobs:
             if grep -q "has been executed successfully" ./migration_status.txt 
             then 
               echo "has been executed successfully"
-              curl -H "Content-Type: text/plain" -H "token: PGKNfN5JZQcZbajTazsxYg" --request PUT --data "1" https://kvdb.io/PGKNfN5JZQcZbajTazsxYg/migrations-${CIRCLE_WORKFLOW_ID:0:7}
+              curl -k "Content-Type: text/plain" -H "token: PGKNfN5JZQcZbajTazsxYg" --request PUT --data "1" https://kvdb.io/PGKNfN5JZQcZbajTazsxYg/migrations-${CIRCLE_WORKFLOW_ID:0:7}
             else
               echo "has failed"
-              curl -H "Content-Type: text/plain" -H "token: PGKNfN5JZQcZbajTazsxYg" --request PUT --data "0" https://kvdb.io/PGKNfN5JZQcZbajTazsxYg/migrations-${CIRCLE_WORKFLOW_ID:0:7}
+              curl -k "Content-Type: text/plain" -H "token: PGKNfN5JZQcZbajTazsxYg" --request PUT --data "0" https://kvdb.io/PGKNfN5JZQcZbajTazsxYg/migrations-${CIRCLE_WORKFLOW_ID:0:7}
             fi
       - persist_to_workspace:
           root: ~/
