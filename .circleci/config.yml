@@ -232,7 +232,7 @@ jobs:
             cd backend
             npm i
             npm run build
-            npm run migrations > migrations_dump.txt
+            npm run migrations
       - run:
           name: Send migration results to kvdb
           command: |
