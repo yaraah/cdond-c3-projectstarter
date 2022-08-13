@@ -232,8 +232,7 @@ jobs:
             cd backend
             npm i
             npm run build
-            npm run migrations >> migrations_dump.txt
-            cat migrations_dump.txt
+            npm run migrations
       - run:
           name: Send migration results to kvdb
           command: |
@@ -253,7 +252,7 @@ jobs:
           
   deploy-frontend:
     docker:
-      - image: sleavely/node-awscli:14.x
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
       - attach_workspace:
