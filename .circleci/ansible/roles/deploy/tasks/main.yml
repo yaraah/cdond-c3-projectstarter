@@ -24,7 +24,7 @@
 
   - name: "run server"
     become: true
-    command: pm2 start -f ./main.js
+    command: pm2 start main.js
     args:
       chdir: ./udapeople/dist
     environment:
