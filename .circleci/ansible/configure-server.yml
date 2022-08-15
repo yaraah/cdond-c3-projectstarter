@@ -13,7 +13,7 @@
     - ansible_stdout_callback: yaml
   # Get the environment variables from CircleCI and add to the EC2 instance
   environment:
-    NODE_ENV: production
+    NODE_ENV: local
     VERSION: "1"
     ENVIRONMENT: "{{ lookup('env','ENVIRONMENT') }}" 
     TYPEORM_CONNECTION: "{{ lookup('env','TYPEORM_CONNECTION') }}"
