@@ -29,6 +29,8 @@
       chdir: ./udapeople/dist
     environment:
       ENVIRONMENT: production
+      NODE_ENV: production
+      VERSION: "1"
       TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION') }}"
       TYPEORM_MIGRATIONS_DIR: "./migrations"
       TYPEORM_MIGRATIONS: "./migrations/*.js"
