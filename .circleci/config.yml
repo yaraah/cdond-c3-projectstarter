@@ -197,6 +197,8 @@ jobs:
           TYPEORM_DATABASE: $TYPEORM_DATABASE
           TYPEORM_PORT: $TYPEORM_PORT
           TYPEORM_ENTITIES: $TYPEORM_ENTITIES
+          TYPEORM_MIGRATIONS_DIR: $TYPEORM_MIGRATIONS_DIR
+          TYPEORM_MIGRATIONS: $TYPEORM_MIGRATIONS
     steps:
       - checkout
       # Add ssh keys with fingerprint
