@@ -22,22 +22,13 @@
       dest: ./udapeople
       recursive: true
 
-  - name: "Executing node"
-    shell: |
-      export
-      cd ~/udapeople
-      pm2 stop default
-      pm2 start npm --start
-    register: execute_node
-
   - name: "run server"
     become: true
-    command: pm2 start main.js
+    command: pm2 start -f ./main.js
     args:
       chdir: ./udapeople/dist
     environment:
-      NODE_ENV: local
-      VERSION: "1"
+      ENVIRONMENT: production
       TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION') }}"
       TYPEORM_MIGRATIONS_DIR: "./migrations"
       TYPEORM_MIGRATIONS: "./migrations/*.js"
