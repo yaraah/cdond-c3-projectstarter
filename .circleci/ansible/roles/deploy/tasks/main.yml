@@ -28,8 +28,9 @@
     args:
       chdir: ./udapeople/dist
     environment:
+      NODE_ENV: production
       ENVIRONMENT: production
-      TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION') }}"
+      TYPEORM_CONNECTION: postgres
       TYPEORM_MIGRATIONS_DIR: "./migrations"
       TYPEORM_MIGRATIONS: "./migrations/*.js"
       TYPEORM_ENTITIES: "./modules/domain/**/*.entity.js"
