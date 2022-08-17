@@ -21,10 +21,19 @@
       src: /root/project/backend/node_modules
       dest: ./udapeople
       recursive: true
+  - name: "unarchive backend directory"
+    unarchive:
+      src: artifact.tar.gz
+      dest: ~/udapeople
 
+  - name: "install node dependencies"
+    command: npm i 
+    args:
+      chdir: ~/udapeople
+      
   - name: "run server"
     become: true
-    command: pm2 start -f ./main.js
+    command: pm2 start main.js
     args:
       chdir: ./udapeople/dist
     environment:
