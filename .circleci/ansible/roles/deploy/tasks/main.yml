@@ -25,7 +25,8 @@
   - name: "run server"
     become: true
     command: |
-      NODE_ENV=production pm2 start main.js --update-env
+      npm i
+      pm2 start main.js
     args:
       chdir: ./udapeople/dist
     environment:
