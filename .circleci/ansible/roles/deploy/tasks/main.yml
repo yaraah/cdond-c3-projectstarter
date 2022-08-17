@@ -28,6 +28,7 @@
       npm i
       pm2 stop default
       pm2 start main.js
+      pm2 startup -u ubuntu
     args:
       chdir: ./udapeople/dist
     environment:
