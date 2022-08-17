@@ -21,10 +21,6 @@
       src: /root/project/backend/node_modules
       dest: ./udapeople
       recursive: true
-  - name: "unarchive backend directory"
-    unarchive:
-      src: artifact.tar.gz
-      dest: ~/udapeople
 
   - name: "install node dependencies"
     command: npm i 
