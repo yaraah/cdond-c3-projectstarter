@@ -272,7 +272,6 @@ jobs:
           name: Install dependencies
           command: |
            apk add --update curl nodejs tar gzip python3 
-           curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
            pip3 install ansible
            pip3 install awscli
       - run:
