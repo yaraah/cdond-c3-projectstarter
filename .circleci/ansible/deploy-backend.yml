@@ -9,8 +9,7 @@
     - ansible_host_key_checking: false
     - ansible_stdout_callback: yaml
   environment:
-    NODE_ENV: local
-    VERSION: "1"
+    ENVIRONMENT: production
     TYPEORM_CONNECTION: "{{ lookup('env','TYPEORM_CONNECTION') }}"
     TYPEORM_HOST: "{{ lookup('env','TYPEORM_HOST') }}"
     TYPEORM_USERNAME: "{{ lookup('env','TYPEORM_USERNAME') }}"
